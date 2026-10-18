@@ -1,0 +1,14 @@
+# Agentic Income (Agentic-Income) — Organization Default CODEOWNERS
+# Website: https://agenticincome.ai
+# Brand ID: agentic-income | Governance Mode: active
+# Steward Agent: steward-wealth
+# Executive Seat: CFO (Capital, Pricing & FinOps)
+# Universal IS: Wealth IS,Business IS
+# Council Lead: starlight-business,starlight-navigator,starlight-sentinel
+# Primary Harnesses: Claude Code, Codex, Hermes, Grok
+#
+# Human approval gate (Maker != Checker invariant):
+* @frankxai
+/.github/ @frankxai
+/AGENTS.md @frankxai
+/SECURITY.md @frankxai
