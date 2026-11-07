@@ -27,18 +27,50 @@ Brand register: `agentic-income`
    - Money fails closed; no autonomous spend or paid API provisioning without explicit human approval.
    - In health and mind domains, model observations only; never diagnose or make clinical claims.
 
-## Federated Repository Roster (9 repositories)
+## Repository architecture (14 repositories)
 
-| Repository | Visibility | Primary Owner | Role |
-| :--- | :--- | :--- | :--- |
-| `agenticincome` | `private` | `frankxai` | federated-mirror (SSOT: frankxai/agenticincome) |
-| `agenticpassiveincome` | `private` | `frankxai` | federated-mirror (SSOT: frankxai/agenticpassiveincome) |
-| `awesome-agentic-income` | `public` | `frankxai` | federated-mirror (SSOT: frankxai/awesome-agentic-income) |
-| `agentic-income-skills` | `public` | `frankxai` | federated-mirror (SSOT: frankxai/agentic-income-skills) |
-| `agentic-income-template` | `public` | `frankxai` | federated-mirror (SSOT: frankxai/agentic-income-template) |
-| `affiliate-agent-skills` | `public` | `frankxai` | federated-mirror (SSOT: frankxai/affiliate-agent-skills) |
-| `awesome-wealth-agent-skills` | `public` | `frankxai` | federated-mirror (SSOT: frankxai/awesome-wealth-agent-skills) |
-| `awesome-investor-agent-skills` | `public` | `frankxai` | federated-mirror (SSOT: frankxai/awesome-investor-agent-skills) |
-| `GenInvestor` | `public` | `frankxai` | federated-mirror (SSOT: frankxai/GenInvestor) |
+The organisation has 10 active and 4 archived repositories. Active repositories fall into three classes. Human codeownership stays with `@frankxai`.
+
+### Transferred repositories (4)
+
+These repositories moved from `frankxai` to `Agentic-Income`; the old `frankxai/<repo>` paths redirect here. The organisation copy is the source of truth.
+
+| Repository | Visibility | Role |
+| :--- | :--- | :--- |
+| `awesome-agentic-income` | `public` | Transferred; source of truth |
+| `agentic-income-template` | `public` | Transferred; source of truth |
+| `awesome-wealth-agent-skills` | `public` | Transferred; source of truth |
+| `awesome-investor-agent-skills` | `public` | Transferred; source of truth |
+
+### Federated mirrors (5)
+
+The source of truth remains in `frankxai`. Do not treat the organisation copy as canonical.
+
+| Repository | Visibility | Source of truth |
+| :--- | :--- | :--- |
+| `agenticincome` | `private` | `frankxai/agenticincome` |
+| `agenticpassiveincome` | `private` | `frankxai/agenticpassiveincome` |
+| `agentic-income-skills` | `public` | `frankxai/agentic-income-skills` |
+| `affiliate-agent-skills` | `public` | `frankxai/affiliate-agent-skills` |
+| `GenInvestor` | `public` | `frankxai/GenInvestor` |
+
+**Drift observed 2026-11-07.** Four mirrors are behind their sources: `agenticincome` (org 2 Nov, source 7 Nov), `agenticpassiveincome` (org 5 Nov, source 7 Nov), `agentic-income-skills` (org 2 Nov, source 5 Nov), and `affiliate-agent-skills` (org 2 Nov, source 3 Nov). `GenInvestor` `main` is identical to its source (`444181fc`). The four stale mirrors are a separate parity workstream; do not edit them as part of `.github` governance changes.
+
+### Governance
+
+| Repository | Visibility | Role |
+| :--- | :--- | :--- |
+| `.github` | `public` | Organisation profile, community health files, agent contract, and reusable CI |
+
+### Archived repositories (4)
+
+Retired under the `20261018` naming pass and kept read-only. New work belongs in the active repository with the same base name.
+
+| Archived repository | Superseded by |
+| :--- | :--- |
+| `agentic-income-template-retired-20261018` | `agentic-income-template` |
+| `awesome-agentic-income-retired-20261018` | `awesome-agentic-income` |
+| `awesome-investor-agent-skills-retired-20261018` | `awesome-investor-agent-skills` |
+| `awesome-wealth-agent-skills-retired-20261018` | `awesome-wealth-agent-skills` |
 
 Built on SIP

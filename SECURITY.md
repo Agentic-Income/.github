@@ -1,4 +1,4 @@
-# Security policy â€” Agentic Income
+# Security policy — Agentic Income
 
 ## Secret hygiene
 
