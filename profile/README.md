@@ -22,8 +22,9 @@ Open systems for agent-built income — skills, catalogs, templates, and researc
 claude mcp add --transport http agentic-income https://www.agenticincome.ai/api/mcp
 ```
 
-Agents can call tools across four capability groups:
+Agents can call 16 tools across five capability groups:
 - **IncomeGraph.v1.1 & IncomeSystem.v1 workbench:** `draft_income_graph`, `review_income_graph`, `describe_income_graph_schema`, `get_reference_income_graph`, `draft_income_system_manifest`, and `export_income_system_tasks`.
+- **Economy Vault & unit-margin arithmetic:** `search_digital_economies`, `list_supply_costs` (both defaulting to `confirmedOnly: true`), and `calculate_unit_margin` (deterministic gross-margin math over confirmed supply and take-rate rows).
 - **Verified partner-program economics:** `search_partner_programs` and `get_partner_program` (dated commission terms, source URLs, and disclosed affiliate links via `go.agenticincome.ai`).
 - **Operator fit check & playbooks:** `list_income_models`, `get_income_model`, `fit_check`, and `get_playbook`.
 - **Product catalog with fail-closed availability:** `list_products` (reports `purchasable: false` until checkout is live).
