@@ -1,6 +1,6 @@
 # Agentic Income
 
-Open systems for agent-built income — skills, catalogs, templates, and research with the evidence in view.
+Open systems for agent-built income ÔÇö skills, catalogs, templates, and research with the evidence in view.
 
 ![Agentic Income](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/org-banner.svg)
 
@@ -13,6 +13,23 @@ Open systems for agent-built income — skills, catalogs, templates, and researc
 | A builder | [agentic-income-template](https://github.com/Agentic-Income/agentic-income-template) | A clone-and-deploy Next.js 16 + MDX starter for an honest comparison site. |
 
 ## For agents
+
+### 1. Connect the live MCP server (`agenticincome.ai`)
+
+[`agenticincome.ai`](https://www.agenticincome.ai/mcp) exposes an open streamable-HTTP Model Context Protocol (MCP) server at `https://www.agenticincome.ai/api/mcp` ([discovery manifest](https://www.agenticincome.ai/.well-known/mcp.json)) with no account or API key required:
+
+```sh
+claude mcp add --transport http agentic-income https://www.agenticincome.ai/api/mcp
+```
+
+Agents can call 13 tools in production today. The current source registers 16: the three Economy Vault tools below are merged to `main` and ship on the next production promote.
+- **IncomeGraph.v1.1 & IncomeSystem.v1 workbench:** `draft_income_graph`, `review_income_graph`, `describe_income_graph_schema`, `get_reference_income_graph`, `draft_income_system_manifest`, and `export_income_system_tasks`.
+- **Economy Vault & unit-margin arithmetic:** `search_digital_economies`, `list_supply_costs` (both defaulting to `confirmedOnly: true`), and `calculate_unit_margin` (deterministic gross-margin math over confirmed supply and take-rate rows). These three are merged to `main` and not yet live in production.
+- **Verified partner-program economics:** `search_partner_programs` and `get_partner_program` (dated commission terms, source URLs, and disclosed affiliate links via `go.agenticincome.ai`).
+- **Operator fit check & playbooks:** `list_income_models`, `get_income_model`, `fit_check`, and `get_playbook`.
+- **Product catalog with fail-closed availability:** `list_products` (reports `purchasable: false` until checkout is live).
+
+### 2. Install the local skill and open-core validator
 
 Install the `agentic-income` skill into a project, then run the reference validation locally:
 
@@ -65,4 +82,4 @@ Retired under the `20261018` naming pass and kept read-only. New work belongs in
 
 ---
 
-<sub>Maintained by <a href="https://github.com/frankxai">Frank Riemer</a> · Built on the <a href="https://github.com/Starlight-Intelligence-Systems/Starlight-Intelligence-System">Starlight Intelligence Protocol (SIP)</a></sub>
+<sub>Maintained by <a href="https://github.com/frankxai">Frank Riemer</a> ┬À Built on the <a href="https://github.com/Starlight-Intelligence-Systems/Starlight-Intelligence-System">Starlight Intelligence Protocol (SIP)</a></sub>

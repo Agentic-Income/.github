@@ -1,4 +1,4 @@
-# Agentic Income — Agent Operating Contract
+# Agentic Income ÔÇö Agent Operating Contract
 
 Scope: All repositories under the **Agentic-Income** GitHub Organization (https://agenticincome.ai).
 Brand register: `agentic-income`
@@ -54,7 +54,7 @@ The source of truth remains in `frankxai`. Do not treat the organisation copy as
 | `affiliate-agent-skills` | `public` | `frankxai/affiliate-agent-skills` |
 | `GenInvestor` | `public` | `frankxai/GenInvestor` |
 
-**Drift observed 2026-11-07.** Four mirrors are behind their sources: `agenticincome` (org 2 Nov, source 7 Nov), `agenticpassiveincome` (org 5 Nov, source 7 Nov), `agentic-income-skills` (org 2 Nov, source 5 Nov), and `affiliate-agent-skills` (org 2 Nov, source 3 Nov). `GenInvestor` `main` is identical to its source (`444181fc`). The four stale mirrors are a separate parity workstream; do not edit them as part of `.github` governance changes.
+**Mirror status verified 2026-11-08.** `agenticincome` mirror `main` is `7eaf856`, tree-identical to canonical `frankxai/agenticincome@92ba2ce` (`Agentic-Income/agenticincome#13`, merged). `agenticpassiveincome` (`96ae23f`), `agentic-income-skills` (`ccef408`), and `affiliate-agent-skills` (`1c619e4`) are tree-identical to their canonical `main`; their commit SHAs differ because each sync re-creates the commit. `GenInvestor` mirror `main` (`92687dc`) is behind canonical `d52da2f` and remains an open parity item. Keep org mirrors read-only (`frankxai/agentic-ops-hub#364`); do not edit them as part of `.github` governance changes.
 
 ### Governance
 
