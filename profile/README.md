@@ -1,85 +1,108 @@
+<div align="center">
+
+![Agentic Income: intelligence that builds value](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/org-banner.svg)
+
 # Agentic Income
 
-Open systems for agent-built income ÔÇö skills, catalogs, templates, and research with the evidence in view.
+**An open ecosystem for designing, evaluating, and building agent-powered income systems.**
 
-![Agentic Income](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/org-banner.svg)
+Research the opportunity. Model the economics. Build with agents. Keep control.
 
-## Start here
+[**Explore the platform**](https://www.agenticincome.ai/) · [**Connect the MCP**](https://www.agenticincome.ai/mcp) · [**Install the skill**](https://github.com/Agentic-Income/agentic-income-skills) · [**Browse open research**](https://github.com/Agentic-Income/awesome-agentic-income)
 
-| If you are | Start with | What you get |
+</div>
+
+---
+
+## The thesis
+
+**An agent can produce an artifact. An economic system must produce value that survives scrutiny.**
+
+Agentic Income treats income opportunities as systems with explicit inputs, delivery costs, contracts, attribution, risks, and human decision rights. Open tools help builders reason about what is viable before committing time or capital.
+
+![The Agentic Income operating loop: research, model, verify, build, measure](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/operating-loop.svg)
+
+> **A decision framework, not an earnings promise.** The illustration depicts the operating philosophy; it does not claim that every stage is autonomously implemented or revenue-generating.
+
+## The decision advantage
+
+The essential question is not *"Can AI build it?"* It is **"Can this produce durable value after costs, risks, and distribution are accounted for?"**
+
+![Economic engine: contribution before fixed costs, supported by source, sensitivity and control checks](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/economic-engine.svg)
+
+We distinguish an attractive narrative from an investable model. Costs, terms, and assumptions are dated and traceable when supported by sources. Hypotheses stay hypotheses.
+
+## Choose your entry point
+
+| You are building… | Start here | Outcome |
 | :--- | :--- | :--- |
-| An agent or skill author | [agentic-income-skills](https://github.com/Agentic-Income/agentic-income-skills) | Portable skills and open contracts for principal-owned agent work. |
-| An operator or publisher | [awesome-agentic-income](https://github.com/Agentic-Income/awesome-agentic-income) | A catalog of delivery, metering, billing, attribution, and governance resources. |
-| A builder | [agentic-income-template](https://github.com/Agentic-Income/agentic-income-template) | A clone-and-deploy Next.js 16 + MDX starter for an honest comparison site. |
+| **An agent or automated workflow** | [MCP server](https://www.agenticincome.ai/mcp) + [agentic-income-skills](https://github.com/Agentic-Income/agentic-income-skills) | Structured income-system models, skills, and inspectable outputs |
+| **A product or distribution business** | [Agentic Income template](https://github.com/Agentic-Income/agentic-income-template) | A Next.js + MDX starting point for publishing research and comparisons |
+| **A research or operator practice** | [Awesome Agentic Income](https://github.com/Agentic-Income/awesome-agentic-income) | Curated resources for delivery, metering, billing, attribution, and governance |
+| **An affiliate operation** | [Affiliate agent skills](https://github.com/Agentic-Income/affiliate-agent-skills) | Workflows for catalog audits, disclosure, and evidence-backed recommendations |
+| **An investment research workflow** | [GenInvestor](https://github.com/Agentic-Income/GenInvestor) + [investor skills](https://github.com/Agentic-Income/awesome-investor-agent-skills) | Research workflows, evidence ledgers, and claims review |
 
-## For agents
+## Built for agents. Accountable to people.
 
-### 1. Connect the live MCP server (`agenticincome.ai`)
+![Architecture: discover through public skills, design with MCP models, govern through sources, checks and owner control](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/system-architecture.svg)
 
-[`agenticincome.ai`](https://www.agenticincome.ai/mcp) exposes an open streamable-HTTP Model Context Protocol (MCP) server at `https://www.agenticincome.ai/api/mcp` ([discovery manifest](https://www.agenticincome.ai/.well-known/mcp.json)) with no account or API key required:
+### Connect over MCP
+
+The platform documents a streamable-HTTP Model Context Protocol endpoint:
+
+```text
+https://www.agenticincome.ai/api/mcp
+```
+
+[Endpoint documentation](https://www.agenticincome.ai/mcp) · [Discovery manifest](https://www.agenticincome.ai/.well-known/mcp.json)
+
+Example Claude Code configuration, subject to your installed CLI version and live endpoint availability:
 
 ```sh
 claude mcp add --transport http agentic-income https://www.agenticincome.ai/api/mcp
 ```
 
-Agents can call 13 tools in production today. The current source registers 16: the three Economy Vault tools below are merged to `main` and ship on the next production promote.
-- **IncomeGraph.v1.1 & IncomeSystem.v1 workbench:** `draft_income_graph`, `review_income_graph`, `describe_income_graph_schema`, `get_reference_income_graph`, `draft_income_system_manifest`, and `export_income_system_tasks`.
-- **Economy Vault & unit-margin arithmetic:** `search_digital_economies`, `list_supply_costs` (both defaulting to `confirmedOnly: true`), and `calculate_unit_margin` (deterministic gross-margin math over confirmed supply and take-rate rows). These three are merged to `main` and not yet live in production.
-- **Verified partner-program economics:** `search_partner_programs` and `get_partner_program` (dated commission terms, source URLs, and disclosed affiliate links via `go.agenticincome.ai`).
-- **Operator fit check & playbooks:** `list_income_models`, `get_income_model`, `fit_check`, and `get_playbook`.
-- **Product catalog with fail-closed availability:** `list_products` (reports `purchasable: false` until checkout is live).
+The repository's documented MCP surface covers income-graph drafting and review, income-system manifests, business-model fit checks and playbooks, partner-program research, and catalog availability. **Tool availability can vary by deployed version.** Inspect the live discovery endpoint before relying on a named tool. In the prior documented deployment snapshot, some Economy Vault tools were in source but not yet promoted; we do not represent those as live here.
 
-### 2. Install the local skill and open-core validator
-
-Install the `agentic-income` skill into a project, then run the reference validation locally:
+### Install the portable skill
 
 ```sh
 npx skills add frankxai/agentic-income-skills --skill agentic-income
-
-git clone https://github.com/Agentic-Income/agentic-income-skills.git
-cd agentic-income-skills && npm install && npm test
 ```
 
-The install resolves from the source repository (`frankxai/agentic-income-skills`); this organisation carries the public mirror.
+The canonical source for this skill is [`frankxai/agentic-income-skills`](https://github.com/frankxai/agentic-income-skills); the [organization repository](https://github.com/Agentic-Income/agentic-income-skills) is a federated public mirror. Inspect the instructions and run the included tests before production adoption.
 
-## Repository map
+## Evidence is the product
 
-Ten active repositories, each with one job. Four were transferred here and are sourced here; five are federated mirrors of `frankxai`. See [`AGENTS.md`](https://github.com/Agentic-Income/.github/blob/main/AGENTS.md) for the full roster.
+![Evidence framework: documented, tested, planned and unverified readiness tiers](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/evidence-standard.svg)
 
-| Repository | Purpose | Visibility |
-| :--- | :--- | :--- |
-| [`agentic-income-skills`](https://github.com/Agentic-Income/agentic-income-skills) | Portable skills and open contracts for principal-owned agent services. | Public |
-| [`awesome-agentic-income`](https://github.com/Agentic-Income/awesome-agentic-income) | Catalog of agent-product delivery, metering, billing, attribution, and governance resources. | Public |
-| [`agentic-income-template`](https://github.com/Agentic-Income/agentic-income-template) | Next.js 16 + MDX starter for an honest AI-tool comparison site. | Public |
-| [`affiliate-agent-skills`](https://github.com/Agentic-Income/affiliate-agent-skills) | Skill pack for affiliate catalog audits, disclosure, and revenue loops. | Public |
-| [`awesome-investor-agent-skills`](https://github.com/Agentic-Income/awesome-investor-agent-skills) | Catalog of research-only investor analysis skills. | Public |
-| [`awesome-wealth-agent-skills`](https://github.com/Agentic-Income/awesome-wealth-agent-skills) | Wealth-research skills for reporting and scenarios. | Public |
-| [`GenInvestor`](https://github.com/Agentic-Income/GenInvestor) | Local-first investor research workspace with an evidence ledger and claims audit. | Public |
-| `.github` | Organisation profile, governance contracts, templates, and reusable CI. | Public |
-| `agenticincome` | Next.js hub site teaching agentic income systems. | Private |
-| `agenticpassiveincome` | AI-tool affiliate comparison site with recurring-payer monetisation. | Private |
+**No fabricated returns. No implied checkout availability. No undisclosed affiliate economics.** We separate sourced facts, reproducible tests, future roadmap, and unsupported claims. Partner-program terms and cost inputs must carry source and date; revenue outcomes are not assumed.
 
-<details>
-<summary>Archived repositories (4)</summary>
+### Open-source collection
 
-Retired under the `20261018` naming pass and kept read-only. New work belongs in the active repository with the same base name.
-
-| Archived repository | Superseded by |
+| System | Public repository |
 | :--- | :--- |
-| `agentic-income-template-retired-20261018` | `agentic-income-template` |
-| `awesome-agentic-income-retired-20261018` | `awesome-agentic-income` |
-| `awesome-investor-agent-skills-retired-20261018` | `awesome-investor-agent-skills` |
-| `awesome-wealth-agent-skills-retired-20261018` | `awesome-wealth-agent-skills` |
+| Portable agent skills and reference contracts | [agentic-income-skills](https://github.com/Agentic-Income/agentic-income-skills) |
+| Business and infrastructure research catalog | [awesome-agentic-income](https://github.com/Agentic-Income/awesome-agentic-income) |
+| Publishing and comparison starter | [agentic-income-template](https://github.com/Agentic-Income/agentic-income-template) |
+| Affiliate research and compliance skills | [affiliate-agent-skills](https://github.com/Agentic-Income/affiliate-agent-skills) |
+| Investor research and evidence ledger | [GenInvestor](https://github.com/Agentic-Income/GenInvestor) |
+| Investor and wealth skills catalogs | [investor skills](https://github.com/Agentic-Income/awesome-investor-agent-skills) · [wealth skills](https://github.com/Agentic-Income/awesome-wealth-agent-skills) |
 
-</details>
+For the complete repository roster, transfer-versus-mirror ownership, archived repositories and operational guardrails, read the [organization operating contract](https://github.com/Agentic-Income/.github/blob/main/AGENTS.md). Do not treat mirrors as canonical sources.
 
-## Standards
+## Participate in the open economy
 
-- **Draft-first pull requests.** Open a draft, verify locally, then mark it ready once.
-- **Maker is not the checker.** The harness or person that writes a change does not approve it.
-- **No secrets.** Credentials stay in local environment files or the secret manager; committed keys and `.env` files are rejected.
-- **Evidence over claims.** Public copy names its source, date, and limits; unverified numbers are left out.
+Contributions should make an actual decision easier: a reproducible workflow, better unit economics, a new verifiable source, a safer skill, or a clearer explanation. Start with [contribution guidelines](https://github.com/Agentic-Income/.github/blob/main/CONTRIBUTING.md) and [security policy](https://github.com/Agentic-Income/.github/blob/main/SECURITY.md).
 
 ---
 
-<sub>Maintained by <a href="https://github.com/frankxai">Frank Riemer</a> ┬À Built on the <a href="https://github.com/Starlight-Intelligence-Systems/Starlight-Intelligence-System">Starlight Intelligence Protocol (SIP)</a></sub>
+<div align="center">
+
+**Build value. Show your work. Keep the keys.**
+
+[AgenticIncome.ai](https://www.agenticincome.ai/) · [Organization governance](https://github.com/Agentic-Income/.github/blob/main/AGENTS.md) · [GitHub](https://github.com/Agentic-Income)
+
+<sub>Agentic Income · An owner-controlled, evidence-led open ecosystem · Maintained by <a href="https://github.com/frankxai">Frank Riemer</a></sub>
+
+</div>
