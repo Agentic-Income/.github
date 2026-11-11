@@ -53,6 +53,7 @@
 | Medium | The earlier README prominently included private project metadata | Removed private repository inventory from public landing page |
 | Medium | Old content has apparent connector-text mojibake | New README uses UTF-8-native replacement |
 | Medium | SVGs might display differently under GitHub's sanitizer and responsive layouts | Screenshot checks needed; do not mark ready prematurely |
+| Medium | README image URLs are pinned to PR-branch commit `4fb5563` for visual inspection | Switch to stable `main` references only upon merge approval |
 | Medium | Canonical vs mirrored skills previously obscure | Public mirror and source-of-truth distinction now explicit |
 | Low | Some externally linked resources may move or redirect | Independent link check recommended |
 
