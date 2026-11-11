@@ -1,6 +1,6 @@
 <div align="center">
 
-![Agentic Income: intelligence that builds value](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/org-banner.svg)
+![Agentic Income: intelligence that builds value](../assets/org-banner.svg)
 
 # Agentic Income
 
@@ -20,7 +20,7 @@ Research the opportunity. Model the economics. Build with agents. Keep control.
 
 Agentic Income treats income opportunities as systems with explicit inputs, delivery costs, contracts, attribution, risks, and human decision rights. Open tools help builders reason about what is viable before committing time or capital.
 
-![The Agentic Income operating loop: research, model, verify, build, measure](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/operating-loop.svg)
+![The Agentic Income operating loop: research, model, verify, build, measure](../assets/operating-loop.svg)
 
 > **A decision framework, not an earnings promise.** The illustration depicts the operating philosophy; it does not claim that every stage is autonomously implemented or revenue-generating.
 
@@ -28,7 +28,7 @@ Agentic Income treats income opportunities as systems with explicit inputs, deli
 
 The essential question is not *"Can AI build it?"* It is **"Can this produce durable value after costs, risks, and distribution are accounted for?"**
 
-![Economic engine: contribution before fixed costs, supported by source, sensitivity and control checks](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/economic-engine.svg)
+![Economic engine: contribution before fixed costs, supported by source, sensitivity and control checks](../assets/economic-engine.svg)
 
 We distinguish an attractive narrative from an investable model. Costs, terms, and assumptions are dated and traceable when supported by sources. Hypotheses stay hypotheses.
 
@@ -44,7 +44,7 @@ We distinguish an attractive narrative from an investable model. Costs, terms, a
 
 ## Built for agents. Accountable to people.
 
-![Architecture: discover through public skills, design with MCP models, govern through sources, checks and owner control](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/system-architecture.svg)
+![Architecture: discover through public skills, design with MCP models, govern through sources, checks and owner control](../assets/system-architecture.svg)
 
 ### Connect over MCP
 
@@ -74,7 +74,7 @@ The canonical source for this skill is [`frankxai/agentic-income-skills`](https:
 
 ## Evidence is the product
 
-![Evidence framework: documented, tested, planned and unverified readiness tiers](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/evidence-standard.svg)
+![Evidence framework: documented, tested, planned and unverified readiness tiers](../assets/evidence-standard.svg)
 
 **No fabricated returns. No implied checkout availability. No undisclosed affiliate economics.** We separate sourced facts, reproducible tests, future roadmap, and unsupported claims. Partner-program terms and cost inputs must carry source and date; revenue outcomes are not assumed.
 
