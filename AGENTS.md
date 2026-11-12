@@ -54,7 +54,11 @@ The source of truth remains in `frankxai`. Do not treat the organisation copy as
 | `affiliate-agent-skills` | `public` | `frankxai/affiliate-agent-skills` |
 | `GenInvestor` | `public` | `frankxai/GenInvestor` |
 
-**Mirror status verified 2026-11-08.** `agenticincome` mirror `main` is `7eaf856`, tree-identical to canonical `frankxai/agenticincome@92ba2ce` (`Agentic-Income/agenticincome#13`, merged). `agenticpassiveincome` (`96ae23f`), `agentic-income-skills` (`ccef408`), and `affiliate-agent-skills` (`1c619e4`) are tree-identical to their canonical `main`; their commit SHAs differ because each sync re-creates the commit. `GenInvestor` mirror `main` (`92687dc`) is behind canonical `d52da2f` and remains an open parity item. Keep org mirrors read-only (`frankxai/agentic-ops-hub#364`); do not edit them as part of `.github` governance changes.
+**Mirror status verified 2026-11-12.** Two mirrors are tree-identical to canonical `main`. `agenticincome` mirror `main` is `cc7cdb0a`, tree-identical to canonical `frankxai/agenticincome@66da7d36` (`Agentic-Income/agenticincome#16`, merged). `agentic-income-skills` mirror `main` is `a9e4ea02`, tree-identical to canonical `frankxai/agentic-income-skills@4dfbd4e9` (`Agentic-Income/agentic-income-skills#3`, merged; merged with an admin override because the `mirror-read-only` ruleset blocks updates to `main`).
+
+Three mirrors are behind and remain open parity items; their trees differ from canonical. `agenticpassiveincome` mirror `main` (`7285439e`) is 38 commits behind canonical `350c9824`. `affiliate-agent-skills` mirror `main` (`1c619e42`) is 1 commit behind canonical `66bb51ee`. `GenInvestor` mirror `main` (`92687dce`) is 2 commits behind canonical `d52da2f4`. Sync each in its own pull request; this contract does not fix them.
+
+Mirror commit SHAs differ from canonical even when trees match, because each sync re-creates the commit. Keep org mirrors read-only (`frankxai/agentic-ops-hub#364`); do not edit them as part of `.github` governance changes.
 
 ### Governance
 

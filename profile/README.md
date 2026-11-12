@@ -62,9 +62,9 @@ Example Claude Code configuration, subject to your installed CLI version and liv
 claude mcp add --transport http agentic-income https://www.agenticincome.ai/api/mcp
 ```
 
-The repository's documented MCP surface covers income-graph drafting and review, income-system manifests, business-model fit checks and playbooks, partner-program research, and catalog availability.
+The repository's documented MCP surface covers income-graph drafting and review, income-system manifests, business-model fit checks and playbooks, partner-program research, catalog availability, and sourced digital-economy and supply-cost data with unit-margin arithmetic.
 
-**Verified 2026-11-12:** the live discovery manifest lists **13 tools**; the current source tree defines **16**. The three not yet promoted are the Economy Vault tools — `search_digital_economies`, `list_supply_costs`, `calculate_unit_margin` — which exist in source and await a production release. Treat only the 13 in the live manifest as available today, and inspect the discovery endpoint before relying on a named tool.
+**Verified 2026-11-12:** the live discovery manifest and a live `tools/list` both return **16 tools**. That includes the Economy Vault group — `search_digital_economies`, `list_supply_costs`, `calculate_unit_margin` — which is live in production, not pending. Economy Vault queries default to confirmed rows only, and the margin calculator refuses unknown, unpriced or unconfirmed inputs instead of estimating them. The discovery endpoint remains the authority: re-read it before depending on a named tool in an automated workflow.
 
 ### Install the portable skill
 
