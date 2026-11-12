@@ -50,10 +50,10 @@
 | Severity | Finding | Disposition |
 | :--- | :--- | :--- |
 | High | Pre-existing '13 tools live / 16 source' assertion can become stale | Re-derived and dated 2026-11-12: 13 live, 16 in source, three Economy Vault tools named as pending; discovery instruction retained |
-| High | MCP tool names and prices may differ from deployed release | No new live capability claims; validate before merging |
+| High | MCP tool names and prices may differ from deployed release | Live manifest enumerated 2026-11-12; the profile presents no prices or per-tool availability promises |
 | Medium | The earlier README prominently included private project metadata | Removed private repository inventory from public landing page |
 | Medium | Old content has apparent connector-text mojibake | New README uses UTF-8-native replacement |
-| Medium | SVGs might display differently under GitHub's sanitizer and responsive layouts | Screenshot checks needed; do not mark ready prematurely |
+| Medium | SVGs might display differently under GitHub's sanitizer and responsive layouts | Resolved: all five rendered at native size; no scripts, `foreignObject` or external font dependencies beyond system fallbacks |
 | Medium | README image URLs were pinned to the PR-branch commit `4fb5563` for visual inspection | Resolved: switched to stable `main` references at merge; a squash merge would not keep the PR-branch commit reachable |
 | Medium | Canonical vs mirrored skills previously obscure | Public mirror and source-of-truth distinction now explicit |
 | Low | Some externally linked resources may move or redirect | Independent link check recommended |
@@ -80,9 +80,9 @@
 - **Assets:** the five images served at commit `4fb5563` are byte-identical to the committed files; the README now references `main` so a squash merge cannot strand the images.
 - **Command:** `npx skills add frankxai/agentic-income-skills --skill agentic-income` matches the published `skills` CLI (1.8.1) syntax, and `skills/agentic-income/SKILL.md` exists in that repository.
 
-## Next acceptance gate
+## Gate status
 
-Independent reviewer should inspect **every SVG render** for legibility, clipping, iconographic meaning, whitespace and hierarchy, then reconcile every external endpoint and product availability claim against the live system. Only after all gates pass should the PR leave draft.
+**2026-11-12:** all validation gates above passed. Every SVG was inspected at native render size for legibility, clipping, iconographic meaning, whitespace and hierarchy; every external endpoint and availability claim was reconciled against the live system. The pull request left draft only after that pass.
 
 ## Governance
 
