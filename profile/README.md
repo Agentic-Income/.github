@@ -1,6 +1,6 @@
 <div align="center">
 
-![Agentic Income: intelligence that builds value](https://raw.githubusercontent.com/Agentic-Income/.github/4fb5563ba12829062116ed647d66fa4f0ba26118/assets/org-banner.svg)
+![Agentic Income: intelligence that builds value](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/org-banner.svg)
 
 # Agentic Income
 
@@ -20,7 +20,7 @@ Research the opportunity. Model the economics. Build with agents. Keep control.
 
 Agentic Income treats income opportunities as systems with explicit inputs, delivery costs, contracts, attribution, risks, and human decision rights. Open tools help builders reason about what is viable before committing time or capital.
 
-![The Agentic Income operating loop: research, model, verify, build, measure](https://raw.githubusercontent.com/Agentic-Income/.github/4fb5563ba12829062116ed647d66fa4f0ba26118/assets/operating-loop.svg)
+![The Agentic Income operating loop: research, model, verify, build, measure](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/operating-loop.svg)
 
 > **A decision framework, not an earnings promise.** The illustration depicts the operating philosophy; it does not claim that every stage is autonomously implemented or revenue-generating.
 
@@ -28,7 +28,7 @@ Agentic Income treats income opportunities as systems with explicit inputs, deli
 
 The essential question is not *"Can AI build it?"* It is **"Can this produce durable value after costs, risks, and distribution are accounted for?"**
 
-![Economic engine: contribution before fixed costs, supported by source, sensitivity and control checks](https://raw.githubusercontent.com/Agentic-Income/.github/4fb5563ba12829062116ed647d66fa4f0ba26118/assets/economic-engine.svg)
+![Economic engine: contribution before fixed costs, supported by source, sensitivity and control checks](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/economic-engine.svg)
 
 We distinguish an attractive narrative from an investable model. Costs, terms, and assumptions are dated and traceable when supported by sources. Hypotheses stay hypotheses.
 
@@ -44,7 +44,7 @@ We distinguish an attractive narrative from an investable model. Costs, terms, a
 
 ## Built for agents. Accountable to people.
 
-![Architecture: discover through public skills, design with MCP models, govern through sources, checks and owner control](https://raw.githubusercontent.com/Agentic-Income/.github/4fb5563ba12829062116ed647d66fa4f0ba26118/assets/system-architecture.svg)
+![Architecture: discover through public skills, design with MCP models, govern through sources, checks and owner control](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/system-architecture.svg)
 
 ### Connect over MCP
 
@@ -62,7 +62,9 @@ Example Claude Code configuration, subject to your installed CLI version and liv
 claude mcp add --transport http agentic-income https://www.agenticincome.ai/api/mcp
 ```
 
-The repository's documented MCP surface covers income-graph drafting and review, income-system manifests, business-model fit checks and playbooks, partner-program research, and catalog availability. **Tool availability can vary by deployed version.** Inspect the live discovery endpoint before relying on a named tool. In the prior documented deployment snapshot, some Economy Vault tools were in source but not yet promoted; we do not represent those as live here.
+The repository's documented MCP surface covers income-graph drafting and review, income-system manifests, business-model fit checks and playbooks, partner-program research, and catalog availability.
+
+**Verified 2026-11-12:** the live discovery manifest lists **13 tools**; the current source tree defines **16**. The three not yet promoted are the Economy Vault tools — `search_digital_economies`, `list_supply_costs`, `calculate_unit_margin` — which exist in source and await a production release. Treat only the 13 in the live manifest as available today, and inspect the discovery endpoint before relying on a named tool.
 
 ### Install the portable skill
 
@@ -74,7 +76,7 @@ The canonical source for this skill is [`frankxai/agentic-income-skills`](https:
 
 ## Evidence is the product
 
-![Evidence framework: documented, tested, planned and unverified readiness tiers](https://raw.githubusercontent.com/Agentic-Income/.github/4fb5563ba12829062116ed647d66fa4f0ba26118/assets/evidence-standard.svg)
+![Evidence framework: documented, tested, planned and unverified readiness tiers](https://raw.githubusercontent.com/Agentic-Income/.github/main/assets/evidence-standard.svg)
 
 **No fabricated returns. No implied checkout availability. No undisclosed affiliate economics.** We separate sourced facts, reproducible tests, future roadmap, and unsupported claims. Partner-program terms and cost inputs must carry source and date; revenue outcomes are not assumed.
 
