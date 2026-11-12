@@ -1,0 +1,62 @@
+name: Organization Surface Check
+
+# Excellence gate for the public organization surface: the profile README and
+# the assets it embeds, the metadata of every public repository, the llms.txt
+# discovery surface, and the live MCP contract.
+#
+# Hard failures exit 1 and block the pull request. Soft gaps (a missing
+# llms.txt) warn and pass, because they are tracked debt rather than defects
+# introduced by the change under review.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monthly drift detection: 06:00 UTC on the first of the month.
+    - cron: '0 6 1 * *'
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - '.github/**'
+      - 'profile/**'
+      - 'assets/**'
+      - 'scripts/org-surface-check.mjs'
+      - 'VISUAL-SYSTEM.md'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: org-surface-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  surface:
+    name: Surface gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify no third-party dependencies
+        # The gate must remain auditable and install nothing. Fail loudly if a
+        # dependency file appears next to the check.
+        run: |
+          if [ -f package.json ] || [ -f package-lock.json ] || [ -f node_modules ]; then
+            echo "::error::scripts/org-surface-check.mjs must stay dependency-free, but package.json or node_modules is present."
+            exit 1
+          fi
+
+      - name: Run surface check
+        env:
+          # Raises the REST rate limit. The script degrades to anonymous reads
+          # and retries unauthenticated if this token is rejected.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/org-surface-check.mjs

@@ -10,3 +10,6 @@ This repository defines organization-wide community health files, agent operatin
 - [`SECURITY.md`](./SECURITY.md) — Secret hygiene and vulnerability reporting policy.
 - [`.github/PULL_REQUEST_TEMPLATE.md`](./.github/PULL_REQUEST_TEMPLATE.md) — Standardized pull request receipt with `Intent:` and Maker-Checker fields.
 - [`.github/workflows/reusable-ci.yml`](./.github/workflows/reusable-ci.yml) — Draft-gated reusable CI workflow with concurrency cancellation and timeout guards.
+- [`VISUAL-SYSTEM.md`](./VISUAL-SYSTEM.md) — Canonical visual language: tokens, typography, format grid, motion, accessibility, and file conventions for every asset.
+- [`scripts/org-surface-check.mjs`](./scripts/org-surface-check.mjs) — Dependency-free gate over the public surface: profile, embedded assets, repository metadata, `llms.txt`, and the live MCP contract.
+- [`.github/workflows/org-surface-check.yml`](./.github/workflows/org-surface-check.yml) — Runs the surface gate on pull requests, monthly, and on demand.
