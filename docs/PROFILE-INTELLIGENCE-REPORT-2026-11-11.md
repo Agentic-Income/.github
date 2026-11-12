@@ -5,6 +5,8 @@
 **Scope:** Public GitHub organization profile, editorial hierarchy, SVG assets, and evidence discipline  
 **Delivery:** Draft PR; no direct main-branch changes, no production deployment, no spending
 
+> **Superseded 2026-11-12:** the MCP promotion recorded here as pending is complete. The live discovery manifest and a live `tools/list` both return **16 tools**, including the Economy Vault group (`search_digital_economies`, `list_supply_costs`, `calculate_unit_margin`). The body below is the 2026-11-11 review snapshot, retained as evidence rather than current state. Read `profile/README.md` and `AGENTS.md` for the live surface.
+
 ## Executive judgment
 
 **The original profile proved technical activity but undercommunicated the economic intelligence proposition.** The revision shifts the front door from a repository directory to a product-level decision narrative: research → model → verify → build → measure, anchored in owner control.
