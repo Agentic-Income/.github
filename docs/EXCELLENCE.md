@@ -13,7 +13,7 @@ How the Agentic Income surfaces are kept honest, what each check proves, and wha
 
 Together that is 55 measured checks in the two original gates, plus two gates that fail on drift instead of on absence. All four are dependency-free Node, read public endpoints anonymously, and never edit anything. Hard failures exit 1; soft gaps warn and exit 0. All four run on a monthly schedule, on manual dispatch, and on pull requests that touch them.
 
-**Status of the two new gates:** the MCP Contract Check and Content Truth Check were written and verified locally on 2026-11-13 (self-tests, a live run, and a deliberately broken input that each correctly rejected). They have not yet run in GitHub Actions. Treat their first CI run as the real acceptance test.
+**Status of the two new gates:** the MCP Contract Check and Content Truth Check were written and verified locally on 2026-11-13 (self-tests, a live run, and a deliberately broken input that each correctly rejected). Both then passed their first GitHub Actions run, on pull request #9 on 2026-11-13, alongside the Organization Surface Check.
 
 ## What the content gate found today
 
