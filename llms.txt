@@ -1,0 +1,66 @@
+# Agentic Income
+
+> An open, evidence-led ecosystem for designing, evaluating and building agent-powered income systems. Maintained by @frankxai. Information, not an income promise.
+
+An agent can produce an artifact. An economic system must produce value that survives scrutiny. Everything here is public, inspectable and owner-controlled, so a builder or another agent can judge whether an opportunity is viable before committing time or capital.
+
+## What this organization is
+
+- The public home of a research-and-tooling ecosystem: portable agent skills, curated catalogs, a publishing starter, investor research tooling, and a live MCP server.
+- Site: https://www.agenticincome.ai
+- Three repository classes: transferred sources of truth, federated mirrors of `frankxai`, and archived snapshots. A mirror is never canonical.
+- Start with the MCP server for structured answers, then the pinned repositories below.
+
+## Pinned repositories
+
+- [agentic-income-skills](https://github.com/Agentic-Income/agentic-income-skills) — portable agent skills for building honest AI-tool income systems: discovery, validation, delivery and proof.
+- [awesome-agentic-income](https://github.com/Agentic-Income/awesome-agentic-income) — curated catalog of agent-product delivery, metering, billing, attribution and governance resources.
+- [agentic-income-template](https://github.com/Agentic-Income/agentic-income-template) — clone-and-deploy Next.js 16 + MDX starter for an honest AI-tool comparison site.
+- [affiliate-agent-skills](https://github.com/Agentic-Income/affiliate-agent-skills) — disclosure-first affiliate engine: catalog audits, partner economics and compliant revenue workflows.
+- [awesome-investor-agent-skills](https://github.com/Agentic-Income/awesome-investor-agent-skills) — research-only investor skills catalog: filings, evidence chains and simulation. Educational, not financial advice.
+- [GenInvestor](https://github.com/Agentic-Income/GenInvestor) — local-first investor tooling where every number shows its source: evidence ledger, claims audit, own MCP server.
+
+Also public: `awesome-wealth-agent-skills` (wealth research and scenario skills, not financial advice). The four `*-retired-20261018` repositories are archived read-only snapshots; use the active repository with the same base name.
+
+## Live MCP server
+
+- Endpoint: https://www.agenticincome.ai/api/mcp — streamable HTTP, `tools/list` and `tools/call`.
+- Manifest: https://www.agenticincome.ai/.well-known/mcp.json — 16 declared tools.
+- Verified 2026-11-13: the manifest declares 16 tools and a live `tools/list` returns 16.
+- Connect from Claude Code: `claude mcp add --transport http agentic-income https://www.agenticincome.ai/api/mcp`
+- The manifest is the authority. Re-read it before depending on a named tool inside an automated workflow.
+
+Tool groups:
+
+- Income models and fit: `list_income_models`, `get_income_model`, `fit_check`
+- Partner programs: `search_partner_programs`, `get_partner_program`
+- Catalog and playbook: `list_products`, `get_playbook`
+- IncomeGraph workbench: `describe_income_graph_schema`, `get_reference_income_graph`, `draft_income_graph`, `review_income_graph`, `draft_income_system_manifest`, `export_income_system_tasks`
+- Economy Vault: `search_digital_economies`, `list_supply_costs`, `calculate_unit_margin`
+
+## Install the skill
+
+```sh
+npx skills add frankxai/agentic-income-skills --skill agentic-income
+```
+
+The canonical source is `frankxai/agentic-income-skills`; the organization repository is a public mirror. Read the instructions and run the included tests before production use.
+
+## Evidence contract
+
+- Four tiers, never blended: sourced fact, reproducible test, future roadmap, unsupported claim.
+- No fabricated returns. No implied checkout availability. No undisclosed affiliate economics.
+- Every partner-program term and cost input carries a source and a date.
+- Economy Vault queries default to confirmed rows only. The margin calculator refuses unknown, unpriced or unconfirmed inputs instead of estimating them.
+- Model-written analysis may not introduce a number the audit cannot back. Revenue outcomes are never assumed.
+
+## Governance
+
+- [AGENTS.md](https://github.com/Agentic-Income/.github/blob/main/AGENTS.md) — operating contract: repository classes, mirror rules, safety guardrails, ownership.
+- [CONTRIBUTING.md](https://github.com/Agentic-Income/.github/blob/main/CONTRIBUTING.md) and [SECURITY.md](https://github.com/Agentic-Income/.github/blob/main/SECURITY.md).
+- Never push to `main`. Work on `agent/<harness>/<scope>` and open a pull request; the authoring harness never merges its own work.
+- Money fails closed: no autonomous spend or paid provisioning without explicit human approval.
+
+## No income promise
+
+Nothing here is an earnings promise, a forecast or a guarantee. This is a decision framework: it helps you judge whether an opportunity could produce durable value after cost, risk and distribution are accounted for. It does not claim that any stage is autonomously revenue-generating, that a partner program pays, or that a product is purchasable unless a dated source says so. Investor material is research and education, not investment, legal or tax advice.
