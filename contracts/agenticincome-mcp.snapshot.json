@@ -1,0 +1,1712 @@
+{
+  "endpoint": "https://www.agenticincome.ai/api/mcp",
+  "protocolVersion": "2025-06-18",
+  "tools": {
+    "list_income_models": {
+      "descriptionSha": "dc8f68c0b313f738",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      }
+    },
+    "get_income_model": {
+      "descriptionSha": "990f3e65f906660a",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "id": {
+            "enum": [
+              "services",
+              "products",
+              "systems"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object"
+      }
+    },
+    "search_partner_programs": {
+      "descriptionSha": "031b1a748623c069",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "category": {
+            "description": "e.g. video, writing, image, llm, creator-stack",
+            "type": "string"
+          },
+          "recurringOnly": {
+            "description": "Only programs whose payout recurs",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "get_partner_program": {
+      "descriptionSha": "d9eaecde119a1968",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "slug": {
+            "description": "e.g. systeme-io, elevenlabs, heygen",
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug"
+        ],
+        "type": "object"
+      }
+    },
+    "list_products": {
+      "descriptionSha": "0991baf707838d69",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      }
+    },
+    "fit_check": {
+      "descriptionSha": "97dd474bb781790a",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "canCode": {
+            "type": "boolean"
+          },
+          "hasAudience": {
+            "type": "boolean"
+          },
+          "hoursPerWeek": {
+            "maximum": 168,
+            "minimum": 0,
+            "type": "number"
+          },
+          "upfrontBudgetUsd": {
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "required": [
+          "hoursPerWeek",
+          "upfrontBudgetUsd",
+          "hasAudience",
+          "canCode"
+        ],
+        "type": "object"
+      }
+    },
+    "get_playbook": {
+      "descriptionSha": "117331551008edd2",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "slug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug"
+        ],
+        "type": "object"
+      }
+    },
+    "describe_income_graph_schema": {
+      "descriptionSha": "209f9ddbaedc8517",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      }
+    },
+    "get_reference_income_graph": {
+      "descriptionSha": "9ef284000782777b",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      }
+    },
+    "review_income_graph": {
+      "descriptionSha": "e39d51c41a52a638",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "graph": {
+            "description": "An IncomeGraph document. Incomplete fields are reported as findings, not rejected here.",
+            "properties": {
+              "apiVersion": {
+                "description": "One of: agenticincome.ai/v1, agenticincome.ai/v1.1",
+                "type": "string"
+              },
+              "edges": {
+                "items": {
+                  "properties": {
+                    "evaluation": {
+                      "description": "The check that would prove this wrong.",
+                      "type": "string"
+                    },
+                    "from": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "description": "The person accountable for this being true.",
+                      "type": "string"
+                    },
+                    "provenance": {
+                      "properties": {
+                        "date": {
+                          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                          "type": "string"
+                        },
+                        "method": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "description": "URL, repository file path, or \"interview:<name> <YYYY-MM-DD>\". Evidence sources must be one of those three.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "to": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "serves",
+                        "suffers",
+                        "evidences",
+                        "reaches",
+                        "supplies",
+                        "fulfills",
+                        "performs",
+                        "gates",
+                        "produces",
+                        "incurs",
+                        "observes",
+                        "tests",
+                        "threatens",
+                        "maintains",
+                        "retires",
+                        "attests"
+                      ],
+                      "type": "string"
+                    },
+                    "version": {
+                      "description": "semver",
+                      "type": "string"
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "buyer",
+                        "private"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "from",
+                    "to"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "kind": {
+                "description": "IncomeGraph",
+                "type": "string"
+              },
+              "metadata": {
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "principal": {
+                    "description": "The named person the system answers for.",
+                    "type": "string"
+                  },
+                  "thesis": {
+                    "description": "The single sentence the whole graph is trying to survive.",
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "principal",
+                  "thesis"
+                ],
+                "type": "object"
+              },
+              "nodes": {
+                "items": {
+                  "properties": {
+                    "data": {
+                      "additionalProperties": {},
+                      "properties": {
+                        "allowedActions": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "amount": {
+                          "properties": {
+                            "amount": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            },
+                            "period": {
+                              "enum": [
+                                "once",
+                                "monthly",
+                                "yearly"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "currency",
+                            "amount",
+                            "period"
+                          ],
+                          "type": "object"
+                        },
+                        "approver": {
+                          "description": "Must resolve to a Human node or metadata.principal. An AgentRole is rejected.",
+                          "type": "string"
+                        },
+                        "artifact": {
+                          "type": "string"
+                        },
+                        "borneByBuyer": {
+                          "type": "boolean"
+                        },
+                        "cadenceDays": {
+                          "type": "number"
+                        },
+                        "cancellation": {
+                          "type": "string"
+                        },
+                        "decisionRule": {
+                          "type": "string"
+                        },
+                        "demandClaim": {
+                          "description": "Any assertion that someone wants or will pay for this. Requires an evidences edge.",
+                          "type": "string"
+                        },
+                        "deniedActions": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "disclosedToBuyer": {
+                          "type": "boolean"
+                        },
+                        "finding": {
+                          "description": "What the source actually said, in at least eight words.",
+                          "type": "string"
+                        },
+                        "founderMinutesPerMonth": {
+                          "type": "number"
+                        },
+                        "gatedStepIds": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "hypothesis": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "enum": [
+                            "interview",
+                            "transcript",
+                            "payment",
+                            "listing",
+                            "analytics",
+                            "document"
+                          ],
+                          "type": "string"
+                        },
+                        "n": {
+                          "type": "number"
+                        },
+                        "observed": {
+                          "properties": {
+                            "amount": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            },
+                            "occurredAt": {
+                              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                              "type": "string"
+                            },
+                            "units": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "currency",
+                            "amount",
+                            "occurredAt",
+                            "units"
+                          ],
+                          "type": "object"
+                        },
+                        "price": {
+                          "properties": {
+                            "amount": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            },
+                            "unit": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "currency",
+                            "amount",
+                            "unit"
+                          ],
+                          "type": "object"
+                        },
+                        "reviewBy": {
+                          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                          "type": "string"
+                        },
+                        "role": {
+                          "enum": [
+                            "founder",
+                            "operator",
+                            "approver"
+                          ],
+                          "type": "string"
+                        },
+                        "scarcity": {
+                          "properties": {
+                            "claim": {
+                              "type": "string"
+                            },
+                            "countBasis": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "claim"
+                          ],
+                          "type": "object"
+                        },
+                        "settlement": {
+                          "properties": {
+                            "asset": {
+                              "description": "Machine payment only: usdc or eurc.",
+                              "type": "string"
+                            },
+                            "chain": {
+                              "description": "On-chain right: base, story, or solana. Machine payment: base, solana, or tempo.",
+                              "type": "string"
+                            },
+                            "protocol": {
+                              "description": "Machine payment only: x402 or mpp.",
+                              "type": "string"
+                            },
+                            "rail": {
+                              "description": "fiat-account, signed-receipt, on-chain-right, or refuse. A wrong value is an R03 finding, not a transport error.",
+                              "type": "string"
+                            },
+                            "right": {
+                              "description": "On-chain only: license, royalty-split, or resaleable-access.",
+                              "type": "string"
+                            },
+                            "spendCap": {
+                              "properties": {
+                                "amount": {
+                                  "type": "number"
+                                },
+                                "currency": {
+                                  "type": "string"
+                                },
+                                "period": {
+                                  "description": "day or month",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "strangerEnforcement": {
+                              "description": "On-chain only: who enforces the right after the seller is gone, in at least eight words.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "steps": {
+                          "items": {
+                            "properties": {
+                              "action": {
+                                "type": "string"
+                              },
+                              "actor": {
+                                "enum": [
+                                  "agent",
+                                  "human"
+                                ],
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "irreversible": {
+                                "description": "Required at v1.1. Omitted in a v1 document, it is migrated to true and reported as M01.",
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "action"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "threshold": {
+                          "type": "string"
+                        },
+                        "volumeAssumption": {
+                          "properties": {
+                            "basis": {
+                              "type": "string"
+                            },
+                            "conversionRate": {
+                              "type": "number"
+                            },
+                            "unitsPerMonth": {
+                              "type": "number"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "evaluation": {
+                      "description": "The check that would prove this wrong.",
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "notes": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "description": "The person accountable for this being true.",
+                      "type": "string"
+                    },
+                    "provenance": {
+                      "properties": {
+                        "date": {
+                          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                          "type": "string"
+                        },
+                        "method": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "description": "URL, repository file path, or \"interview:<name> <YYYY-MM-DD>\". Evidence sources must be one of those three.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": {
+                      "enum": [
+                        "Problem",
+                        "Customer",
+                        "Offer",
+                        "Evidence",
+                        "Channel",
+                        "Partner",
+                        "Asset",
+                        "Workflow",
+                        "AgentRole",
+                        "Human",
+                        "HumanGate",
+                        "Cost",
+                        "RevenueObservation",
+                        "Experiment",
+                        "Risk",
+                        "Maintenance",
+                        "KillCriterion",
+                        "Receipt"
+                      ],
+                      "type": "string"
+                    },
+                    "version": {
+                      "description": "semver",
+                      "type": "string"
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "buyer",
+                        "private"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "label"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "apiVersion",
+              "kind",
+              "metadata",
+              "nodes",
+              "edges"
+            ],
+            "type": "object"
+          },
+          "today": {
+            "description": "ISO date used for future-dating checks, so results are reproducible.",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "graph",
+          "today"
+        ],
+        "type": "object"
+      }
+    },
+    "draft_income_graph": {
+      "descriptionSha": "d78752d8e5373106",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "principal": {
+            "description": "The named person accountable for the system. Becomes the Human node and the gate approver.",
+            "type": "string"
+          },
+          "thesis": {
+            "description": "One or two sentences: who has the problem, what you would sell them, and why they would pay.",
+            "minLength": 12,
+            "type": "string"
+          },
+          "today": {
+            "description": "ISO date. Used for provenance and the kill-review date, so the draft is reproducible.",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "thesis",
+          "today"
+        ],
+        "type": "object"
+      }
+    },
+    "draft_income_system_manifest": {
+      "descriptionSha": "324bc7ac507d83ab",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "graph": {
+            "description": "An IncomeGraph document. Incomplete fields are reported as findings, not rejected here.",
+            "properties": {
+              "apiVersion": {
+                "description": "One of: agenticincome.ai/v1, agenticincome.ai/v1.1",
+                "type": "string"
+              },
+              "edges": {
+                "items": {
+                  "properties": {
+                    "evaluation": {
+                      "description": "The check that would prove this wrong.",
+                      "type": "string"
+                    },
+                    "from": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "description": "The person accountable for this being true.",
+                      "type": "string"
+                    },
+                    "provenance": {
+                      "properties": {
+                        "date": {
+                          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                          "type": "string"
+                        },
+                        "method": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "description": "URL, repository file path, or \"interview:<name> <YYYY-MM-DD>\". Evidence sources must be one of those three.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "to": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "serves",
+                        "suffers",
+                        "evidences",
+                        "reaches",
+                        "supplies",
+                        "fulfills",
+                        "performs",
+                        "gates",
+                        "produces",
+                        "incurs",
+                        "observes",
+                        "tests",
+                        "threatens",
+                        "maintains",
+                        "retires",
+                        "attests"
+                      ],
+                      "type": "string"
+                    },
+                    "version": {
+                      "description": "semver",
+                      "type": "string"
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "buyer",
+                        "private"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "from",
+                    "to"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "kind": {
+                "description": "IncomeGraph",
+                "type": "string"
+              },
+              "metadata": {
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "principal": {
+                    "description": "The named person the system answers for.",
+                    "type": "string"
+                  },
+                  "thesis": {
+                    "description": "The single sentence the whole graph is trying to survive.",
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "principal",
+                  "thesis"
+                ],
+                "type": "object"
+              },
+              "nodes": {
+                "items": {
+                  "properties": {
+                    "data": {
+                      "additionalProperties": {},
+                      "properties": {
+                        "allowedActions": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "amount": {
+                          "properties": {
+                            "amount": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            },
+                            "period": {
+                              "enum": [
+                                "once",
+                                "monthly",
+                                "yearly"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "currency",
+                            "amount",
+                            "period"
+                          ],
+                          "type": "object"
+                        },
+                        "approver": {
+                          "description": "Must resolve to a Human node or metadata.principal. An AgentRole is rejected.",
+                          "type": "string"
+                        },
+                        "artifact": {
+                          "type": "string"
+                        },
+                        "borneByBuyer": {
+                          "type": "boolean"
+                        },
+                        "cadenceDays": {
+                          "type": "number"
+                        },
+                        "cancellation": {
+                          "type": "string"
+                        },
+                        "decisionRule": {
+                          "type": "string"
+                        },
+                        "demandClaim": {
+                          "description": "Any assertion that someone wants or will pay for this. Requires an evidences edge.",
+                          "type": "string"
+                        },
+                        "deniedActions": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "disclosedToBuyer": {
+                          "type": "boolean"
+                        },
+                        "finding": {
+                          "description": "What the source actually said, in at least eight words.",
+                          "type": "string"
+                        },
+                        "founderMinutesPerMonth": {
+                          "type": "number"
+                        },
+                        "gatedStepIds": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "hypothesis": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "enum": [
+                            "interview",
+                            "transcript",
+                            "payment",
+                            "listing",
+                            "analytics",
+                            "document"
+                          ],
+                          "type": "string"
+                        },
+                        "n": {
+                          "type": "number"
+                        },
+                        "observed": {
+                          "properties": {
+                            "amount": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            },
+                            "occurredAt": {
+                              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                              "type": "string"
+                            },
+                            "units": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "currency",
+                            "amount",
+                            "occurredAt",
+                            "units"
+                          ],
+                          "type": "object"
+                        },
+                        "price": {
+                          "properties": {
+                            "amount": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            },
+                            "unit": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "currency",
+                            "amount",
+                            "unit"
+                          ],
+                          "type": "object"
+                        },
+                        "reviewBy": {
+                          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                          "type": "string"
+                        },
+                        "role": {
+                          "enum": [
+                            "founder",
+                            "operator",
+                            "approver"
+                          ],
+                          "type": "string"
+                        },
+                        "scarcity": {
+                          "properties": {
+                            "claim": {
+                              "type": "string"
+                            },
+                            "countBasis": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "claim"
+                          ],
+                          "type": "object"
+                        },
+                        "settlement": {
+                          "properties": {
+                            "asset": {
+                              "description": "Machine payment only: usdc or eurc.",
+                              "type": "string"
+                            },
+                            "chain": {
+                              "description": "On-chain right: base, story, or solana. Machine payment: base, solana, or tempo.",
+                              "type": "string"
+                            },
+                            "protocol": {
+                              "description": "Machine payment only: x402 or mpp.",
+                              "type": "string"
+                            },
+                            "rail": {
+                              "description": "fiat-account, signed-receipt, on-chain-right, or refuse. A wrong value is an R03 finding, not a transport error.",
+                              "type": "string"
+                            },
+                            "right": {
+                              "description": "On-chain only: license, royalty-split, or resaleable-access.",
+                              "type": "string"
+                            },
+                            "spendCap": {
+                              "properties": {
+                                "amount": {
+                                  "type": "number"
+                                },
+                                "currency": {
+                                  "type": "string"
+                                },
+                                "period": {
+                                  "description": "day or month",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "strangerEnforcement": {
+                              "description": "On-chain only: who enforces the right after the seller is gone, in at least eight words.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "steps": {
+                          "items": {
+                            "properties": {
+                              "action": {
+                                "type": "string"
+                              },
+                              "actor": {
+                                "enum": [
+                                  "agent",
+                                  "human"
+                                ],
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "irreversible": {
+                                "description": "Required at v1.1. Omitted in a v1 document, it is migrated to true and reported as M01.",
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "action"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "threshold": {
+                          "type": "string"
+                        },
+                        "volumeAssumption": {
+                          "properties": {
+                            "basis": {
+                              "type": "string"
+                            },
+                            "conversionRate": {
+                              "type": "number"
+                            },
+                            "unitsPerMonth": {
+                              "type": "number"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "evaluation": {
+                      "description": "The check that would prove this wrong.",
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "notes": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "description": "The person accountable for this being true.",
+                      "type": "string"
+                    },
+                    "provenance": {
+                      "properties": {
+                        "date": {
+                          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                          "type": "string"
+                        },
+                        "method": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "description": "URL, repository file path, or \"interview:<name> <YYYY-MM-DD>\". Evidence sources must be one of those three.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": {
+                      "enum": [
+                        "Problem",
+                        "Customer",
+                        "Offer",
+                        "Evidence",
+                        "Channel",
+                        "Partner",
+                        "Asset",
+                        "Workflow",
+                        "AgentRole",
+                        "Human",
+                        "HumanGate",
+                        "Cost",
+                        "RevenueObservation",
+                        "Experiment",
+                        "Risk",
+                        "Maintenance",
+                        "KillCriterion",
+                        "Receipt"
+                      ],
+                      "type": "string"
+                    },
+                    "version": {
+                      "description": "semver",
+                      "type": "string"
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "buyer",
+                        "private"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "label"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "apiVersion",
+              "kind",
+              "metadata",
+              "nodes",
+              "edges"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "graph"
+        ],
+        "type": "object"
+      }
+    },
+    "export_income_system_tasks": {
+      "descriptionSha": "f435026c56e985ac",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "graph": {
+            "description": "An IncomeGraph document. Incomplete fields are reported as findings, not rejected here.",
+            "properties": {
+              "apiVersion": {
+                "description": "One of: agenticincome.ai/v1, agenticincome.ai/v1.1",
+                "type": "string"
+              },
+              "edges": {
+                "items": {
+                  "properties": {
+                    "evaluation": {
+                      "description": "The check that would prove this wrong.",
+                      "type": "string"
+                    },
+                    "from": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "description": "The person accountable for this being true.",
+                      "type": "string"
+                    },
+                    "provenance": {
+                      "properties": {
+                        "date": {
+                          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                          "type": "string"
+                        },
+                        "method": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "description": "URL, repository file path, or \"interview:<name> <YYYY-MM-DD>\". Evidence sources must be one of those three.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "to": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "serves",
+                        "suffers",
+                        "evidences",
+                        "reaches",
+                        "supplies",
+                        "fulfills",
+                        "performs",
+                        "gates",
+                        "produces",
+                        "incurs",
+                        "observes",
+                        "tests",
+                        "threatens",
+                        "maintains",
+                        "retires",
+                        "attests"
+                      ],
+                      "type": "string"
+                    },
+                    "version": {
+                      "description": "semver",
+                      "type": "string"
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "buyer",
+                        "private"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "from",
+                    "to"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "kind": {
+                "description": "IncomeGraph",
+                "type": "string"
+              },
+              "metadata": {
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "principal": {
+                    "description": "The named person the system answers for.",
+                    "type": "string"
+                  },
+                  "thesis": {
+                    "description": "The single sentence the whole graph is trying to survive.",
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "principal",
+                  "thesis"
+                ],
+                "type": "object"
+              },
+              "nodes": {
+                "items": {
+                  "properties": {
+                    "data": {
+                      "additionalProperties": {},
+                      "properties": {
+                        "allowedActions": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "amount": {
+                          "properties": {
+                            "amount": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            },
+                            "period": {
+                              "enum": [
+                                "once",
+                                "monthly",
+                                "yearly"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "currency",
+                            "amount",
+                            "period"
+                          ],
+                          "type": "object"
+                        },
+                        "approver": {
+                          "description": "Must resolve to a Human node or metadata.principal. An AgentRole is rejected.",
+                          "type": "string"
+                        },
+                        "artifact": {
+                          "type": "string"
+                        },
+                        "borneByBuyer": {
+                          "type": "boolean"
+                        },
+                        "cadenceDays": {
+                          "type": "number"
+                        },
+                        "cancellation": {
+                          "type": "string"
+                        },
+                        "decisionRule": {
+                          "type": "string"
+                        },
+                        "demandClaim": {
+                          "description": "Any assertion that someone wants or will pay for this. Requires an evidences edge.",
+                          "type": "string"
+                        },
+                        "deniedActions": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "disclosedToBuyer": {
+                          "type": "boolean"
+                        },
+                        "finding": {
+                          "description": "What the source actually said, in at least eight words.",
+                          "type": "string"
+                        },
+                        "founderMinutesPerMonth": {
+                          "type": "number"
+                        },
+                        "gatedStepIds": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "hypothesis": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "enum": [
+                            "interview",
+                            "transcript",
+                            "payment",
+                            "listing",
+                            "analytics",
+                            "document"
+                          ],
+                          "type": "string"
+                        },
+                        "n": {
+                          "type": "number"
+                        },
+                        "observed": {
+                          "properties": {
+                            "amount": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            },
+                            "occurredAt": {
+                              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                              "type": "string"
+                            },
+                            "units": {
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "currency",
+                            "amount",
+                            "occurredAt",
+                            "units"
+                          ],
+                          "type": "object"
+                        },
+                        "price": {
+                          "properties": {
+                            "amount": {
+                              "type": "number"
+                            },
+                            "currency": {
+                              "type": "string"
+                            },
+                            "unit": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "currency",
+                            "amount",
+                            "unit"
+                          ],
+                          "type": "object"
+                        },
+                        "reviewBy": {
+                          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                          "type": "string"
+                        },
+                        "role": {
+                          "enum": [
+                            "founder",
+                            "operator",
+                            "approver"
+                          ],
+                          "type": "string"
+                        },
+                        "scarcity": {
+                          "properties": {
+                            "claim": {
+                              "type": "string"
+                            },
+                            "countBasis": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "claim"
+                          ],
+                          "type": "object"
+                        },
+                        "settlement": {
+                          "properties": {
+                            "asset": {
+                              "description": "Machine payment only: usdc or eurc.",
+                              "type": "string"
+                            },
+                            "chain": {
+                              "description": "On-chain right: base, story, or solana. Machine payment: base, solana, or tempo.",
+                              "type": "string"
+                            },
+                            "protocol": {
+                              "description": "Machine payment only: x402 or mpp.",
+                              "type": "string"
+                            },
+                            "rail": {
+                              "description": "fiat-account, signed-receipt, on-chain-right, or refuse. A wrong value is an R03 finding, not a transport error.",
+                              "type": "string"
+                            },
+                            "right": {
+                              "description": "On-chain only: license, royalty-split, or resaleable-access.",
+                              "type": "string"
+                            },
+                            "spendCap": {
+                              "properties": {
+                                "amount": {
+                                  "type": "number"
+                                },
+                                "currency": {
+                                  "type": "string"
+                                },
+                                "period": {
+                                  "description": "day or month",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "strangerEnforcement": {
+                              "description": "On-chain only: who enforces the right after the seller is gone, in at least eight words.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "steps": {
+                          "items": {
+                            "properties": {
+                              "action": {
+                                "type": "string"
+                              },
+                              "actor": {
+                                "enum": [
+                                  "agent",
+                                  "human"
+                                ],
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "irreversible": {
+                                "description": "Required at v1.1. Omitted in a v1 document, it is migrated to true and reported as M01.",
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "action"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "threshold": {
+                          "type": "string"
+                        },
+                        "volumeAssumption": {
+                          "properties": {
+                            "basis": {
+                              "type": "string"
+                            },
+                            "conversionRate": {
+                              "type": "number"
+                            },
+                            "unitsPerMonth": {
+                              "type": "number"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "evaluation": {
+                      "description": "The check that would prove this wrong.",
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "notes": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "description": "The person accountable for this being true.",
+                      "type": "string"
+                    },
+                    "provenance": {
+                      "properties": {
+                        "date": {
+                          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                          "type": "string"
+                        },
+                        "method": {
+                          "type": "string"
+                        },
+                        "source": {
+                          "description": "URL, repository file path, or \"interview:<name> <YYYY-MM-DD>\". Evidence sources must be one of those three.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": {
+                      "enum": [
+                        "Problem",
+                        "Customer",
+                        "Offer",
+                        "Evidence",
+                        "Channel",
+                        "Partner",
+                        "Asset",
+                        "Workflow",
+                        "AgentRole",
+                        "Human",
+                        "HumanGate",
+                        "Cost",
+                        "RevenueObservation",
+                        "Experiment",
+                        "Risk",
+                        "Maintenance",
+                        "KillCriterion",
+                        "Receipt"
+                      ],
+                      "type": "string"
+                    },
+                    "version": {
+                      "description": "semver",
+                      "type": "string"
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "buyer",
+                        "private"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "label"
+                  ],
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "apiVersion",
+              "kind",
+              "metadata",
+              "nodes",
+              "edges"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "graph"
+        ],
+        "type": "object"
+      }
+    },
+    "search_digital_economies": {
+      "descriptionSha": "72e55924a3b58b5a",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "confirmedOnly": {
+            "description": "Defaults to true on the public endpoint. Set false to inspect unconfirmed rows alongside their verification verdict.",
+            "type": "boolean"
+          },
+          "query": {
+            "description": "Optional substring search against platform name and metric.",
+            "type": "string"
+          },
+          "sector": {
+            "description": "Optional sector filter (e.g. app-stores, games, creator, templates, freelance, ecommerce, developer-marketplaces).",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "list_supply_costs": {
+      "descriptionSha": "01a0634f707f4cf5",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "category": {
+            "description": "Optional category filter (e.g. llm, audio, image, video, payments, hosting, agent-payments).",
+            "type": "string"
+          },
+          "confirmedOnly": {
+            "description": "Defaults to true on the public endpoint. Set false to include unconfirmed rows with their verification verdict.",
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "calculate_unit_margin": {
+      "descriptionSha": "a67f2a23e1615b21",
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+          "costLines": {
+            "default": [],
+            "description": "Unit cost lines consumed per sale.",
+            "items": {
+              "properties": {
+                "quantity": {
+                  "description": "Units consumed per sale (must be > 0).",
+                  "exclusiveMinimum": 0,
+                  "type": "number"
+                },
+                "supplyId": {
+                  "description": "Supply-chain unit-cost row id from list_supply_costs.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "supplyId",
+                "quantity"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "feeSupplyIds": {
+            "description": "Optional selling-fee row ids from list_supply_costs (e.g. polar-starter-fee, gumroad-direct-fee).",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "priceUsd": {
+            "description": "Hypothesis selling price in USD (must be > 0; treated as a price hypothesis, not a demand claim).",
+            "exclusiveMinimum": 0,
+            "type": "number"
+          },
+          "takeRateFrom": {
+            "description": "Optional economy row id from search_digital_economies with a confirmed takeRateFraction.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "priceUsd"
+        ],
+        "type": "object"
+      }
+    }
+  }
+}
