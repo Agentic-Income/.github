@@ -13,3 +13,5 @@ This repository defines organization-wide community health files, agent operatin
 - [`VISUAL-SYSTEM.md`](./VISUAL-SYSTEM.md) — Canonical visual language: tokens, typography, format grid, motion, accessibility, and file conventions for every asset.
 - [`scripts/org-surface-check.mjs`](./scripts/org-surface-check.mjs) — Dependency-free gate over the public surface: profile, embedded assets, repository metadata, `llms.txt`, and the live MCP contract.
 - [`.github/workflows/org-surface-check.yml`](./.github/workflows/org-surface-check.yml) — Runs the surface gate on pull requests, monthly, and on demand.
+- [`scripts/site-surface-check.mjs`](./scripts/site-surface-check.mjs) — Dependency-free gate over the three live product sites: homepage contract, structured data, discovery files, social card, and MCP manifest parity.
+- [`.github/workflows/site-surface-check.yml`](./.github/workflows/site-surface-check.yml) — Runs the live site gate on pull requests to the gate itself, monthly, and on demand.

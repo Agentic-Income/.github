@@ -1,0 +1,57 @@
+name: Live Site Surface Check
+
+# Excellence gate for the public product surfaces, not just repository metadata:
+# the homepage contract (status, title, description, structured data), the
+# agent discovery surface (llms.txt, robots.txt, sitemap.xml), the social card,
+# and MCP manifest-to-tools/list parity.
+#
+# Hard failures exit 1 and block the pull request. Optional gaps (a site with no
+# og:image, an advisory MCP surface that is absent) warn and pass, because they
+# are tracked surface debt rather than defects introduced by the change under
+# review. The check reads public endpoints only and never edits a live site.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monthly drift detection: 06:20 UTC on the first of the month, after the
+    # organization surface check has run.
+    - cron: '20 6 1 * *'
+  pull_request:
+    paths:
+      - 'scripts/site-surface-check.mjs'
+      - '.github/workflows/site-surface-check.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-surface-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  surfaces:
+    name: Surface gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verify no third-party dependencies
+        # The gate must remain auditable and install nothing. Fail loudly if a
+        # dependency file appears next to the check.
+        run: |
+          if [ -f package.json ] || [ -f package-lock.json ] || [ -d node_modules ]; then
+            echo "::error::scripts/site-surface-check.mjs must stay dependency-free, but package.json or node_modules is present."
+            exit 1
+          fi
+
+      - name: Run live site surface check
+        # No secrets. Anonymous reads against public endpoints only.
+        run: node scripts/site-surface-check.mjs
