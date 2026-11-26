@@ -63,7 +63,9 @@ const HARD_PATTERNS = [
 ];
 
 const SOFT_NUMBER = new RegExp('\\b\\d{1,3}(?:\\.\\d+)?\\s?%|' + CURRENCY + '\\s?\\d[\\d,.]*\\s?[kKmM]?\\b', 'i');
-const NEGATION = /\b(?:no|not|never|without|none|nor|neither|don'?t|doesn'?t|do not|does not|won'?t|cannot|can'?t|isn'?t|aren'?t|avoid|avoids|refuse|refuses|prohibit|prohibited|forbid|forbidden|stop|stops|ban|banned|zero|nothing)\b/i;
+// Only the words governing this claim can negate it. An unrelated "no fee"
+// or "no experience required" elsewhere on the line says nothing about earnings.
+const NEGATES_CLAIM = /\b(?:no|not|never|without|nor|don't|doesn't|won't|cannot|can't|isn't|aren't|avoid(?:s)?|refus(?:e|es) to)\s+(?:(?:claim|promise|offer|imply|suggest|any|a|that|you|will|can|to)\s+)*$/i;
 const SOURCE_MARKER = /https?:\/\/|\]\(|\bsource[sd]?\b|\baccording to\b|\bas of\b|\b(?:19|20)\d{2}\b|\bfootnote\b|\bcite[sd]?\b|\bconfirmed\b|\bpublished\b/i;
 const OPT_OUT = /<!--\s*truth-ok:\s*(.+?)\s*-->/i;
 
@@ -90,20 +92,20 @@ function sentences(text) {
 
 /** Classify one unit of text. Pure function: this is what the self-test exercises. */
 function classify(text) {
-  const findings = [];
-  const negated = NEGATION.test(text);
   for (const pattern of HARD_PATTERNS) {
-    const match = text.match(pattern.re);
-    if (match && !negated) {
-      findings.push({ level: 'hard', id: pattern.id, evidence: match[0] });
-      break;
+    for (const match of text.matchAll(new RegExp(pattern.re.source, 'gi'))) {
+      if (!NEGATES_CLAIM.test(text.slice(0, match.index))) {
+        return [{ level: 'hard', id: pattern.id, evidence: match[0] }];
+      }
     }
   }
-  if (findings.length === 0 && SOFT_NUMBER.test(text) && !SOURCE_MARKER.test(text) && !negated) {
+  if (!SOURCE_MARKER.test(text)) {
     const match = text.match(SOFT_NUMBER);
-    findings.push({ level: 'soft', id: 'unsourced-number', evidence: match[0] });
+    if (match && !NEGATES_CLAIM.test(text.slice(0, match.index))) {
+      return [{ level: 'soft', id: 'unsourced-number', evidence: match[0] }];
+    }
   }
-  return findings;
+  return [];
 }
 
 // Design specifications state layout percentages, not factual claims. Hard promise
@@ -178,6 +180,9 @@ async function fetchText(url) {
 
 function selfTest() {
   const mustFail = [
+    'No experience required: we guarantee results.',
+    'You cannot lose with this offer.',
+    'We promise no guaranteed income in training, but our membership pays guaranteed income.',
     'Our system gives you guaranteed income from day one.',
     'Operators earn $5,000 per month with this playbook.',
     'You can make $10k a month while you sleep.',
