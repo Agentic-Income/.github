@@ -1,0 +1,61 @@
+name: Content Truth Check
+
+# Claim-integrity gate. The brand promise is no income promises and every number
+# sourced. The surface gates prove pages exist; this one reads the words.
+#
+# HARD (blocks): guaranteed income or results, "earn $N" figures, get-rich and
+#   risk-free language, social-proof counts nothing here can substantiate.
+# SOFT (warns): a number with no visible source nearby.
+# A sentence that negates a pattern is allowed ("no guaranteed income"). A line
+# may opt out with <!-- truth-ok: reason -->, and every opt-out is printed.
+#
+# Scope: markdown and llms.txt in this repository, plus the visible text and
+# llms.txt of the three live product sites. Public reads only, never edits.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monthly drift detection: 07:00 UTC on the first of the month.
+    - cron: '0 7 1 * *'
+  pull_request:
+    paths:
+      - 'scripts/content-truth-check.mjs'
+      - '**/*.md'
+      - 'llms.txt'
+      - '.github/workflows/content-truth-check.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: content-truth-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  truth:
+    name: Truth gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verify no third-party dependencies
+        run: |
+          if [ -f package.json ] || [ -f package-lock.json ] || [ -d node_modules ]; then
+            echo "::error::scripts/content-truth-check.mjs must stay dependency-free, but package.json or node_modules is present."
+            exit 1
+          fi
+
+      - name: Prove the classifier
+        # Fixtures that must fail, must pass, and must warn. No network.
+        run: node scripts/content-truth-check.mjs --self-test
+
+      - name: Check repository copy and the live sites
+        run: node scripts/content-truth-check.mjs

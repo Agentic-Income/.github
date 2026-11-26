@@ -1,0 +1,60 @@
+name: MCP Contract Check
+
+# Stability gate for the public MCP server. org-surface-check and
+# site-surface-check prove the tool NAMES agree. This gate proves the tool
+# CONTRACTS have not drifted in a way that breaks a caller: a removed tool, a
+# removed or retyped input, a new required input, a lost enum value.
+#
+# Breaking drift exits 1. Compatible drift (a new tool, a new optional input, a
+# changed description) warns and passes. A breaking change must land together
+# with a reviewed update to contracts/agenticincome-mcp.snapshot.json.
+# The check reads one public endpoint anonymously and never edits anything.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monthly drift detection: 06:40 UTC on the first of the month, after the
+    # organization and live-site checks have run.
+    - cron: '40 6 1 * *'
+  pull_request:
+    paths:
+      - 'scripts/mcp-contract-check.mjs'
+      - 'contracts/**'
+      - '.github/workflows/mcp-contract-check.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mcp-contract-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    name: Contract gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verify no third-party dependencies
+        run: |
+          if [ -f package.json ] || [ -f package-lock.json ] || [ -d node_modules ]; then
+            echo "::error::scripts/mcp-contract-check.mjs must stay dependency-free, but package.json or node_modules is present."
+            exit 1
+          fi
+
+      - name: Prove the diff logic
+        # Twelve synthetic changes, no network. If the classifier is wrong the
+        # live check below cannot be trusted.
+        run: node scripts/mcp-contract-check.mjs --self-test
+
+      - name: Check the live contract against the snapshot
+        run: node scripts/mcp-contract-check.mjs
